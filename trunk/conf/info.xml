@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="0.2">
+    <title xml:lang="en">Zend Search</title>
+    <description xml:lang="en">
+        Zend_Search_Lucene integration.
+    </description>
+    <version>0.1</version>
+    <date>2012-06-21</date>
+    <category>service</category>
+
+    <author email_address="xe_dev@arnia.ro" link="http://xpressengine.org/">
+        <name xml:lang="en">Arnia</name>
+    </author>
+</module>
