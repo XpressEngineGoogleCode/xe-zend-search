@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+    <grants />
+    <permissions />
+    <actions>
+        <action name="IS" type="view" standalone="true" />
+        <action name="dispZend_searchAdminContent" type="view" admin_index="true" />
+        <action name="dispZend_searchAdminGrantInfo" type="view" />
+        <action name="dispZend_searchAdminSkinInfo" type="view" />
+
+        <action name="procZend_searchAdminInsertConfig" type="controller" ruleset="insertConfig" />
+        <action name="procZend_searchAdminInsertSkin" type="controller" />
+    </actions>
+</module>
