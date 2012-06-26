@@ -109,7 +109,7 @@ class zend_searchController extends zend_search {
      * @param $obj document object
      * @return Zend_Search_Lucene_Proxy
      */
-    function addDocumentToIndex($obj) {
+    function addDocumentToIndex($obj, $withOptimize=true) {
         $index = $this->createOrRetrieveIndex(self::INDEX_PATH_DOCUMENTS);
         $doc = new Zend_Search_Lucene_Document();
         $doc->addField(Zend_Search_Lucene_Field::keyword('srl', $obj->document_srl));
@@ -118,7 +118,7 @@ class zend_searchController extends zend_search {
         $doc->addField(Zend_Search_Lucene_Field::unStored('title', $obj->title));
         $doc->addField(Zend_Search_Lucene_Field::unStored('tags', implode(', ', $this->getDocumentTags($obj))));
         $index->addDocument($doc);
-        //$index->optimize();
+        if ($withOptimize) $index->optimize();
         return $index;
     }
 
@@ -126,14 +126,14 @@ class zend_searchController extends zend_search {
      * @param $obj comment object
      * @return Zend_Search_Lucene_Proxy
      */
-    function addCommentToIndex($obj) {
+    function addCommentToIndex($obj, $withOptimize = true) {
         $index = $this->createOrRetrieveIndex(self::INDEX_PATH_COMMENTS);
         $doc = new Zend_Search_Lucene_Document();
         $doc->addField(Zend_Search_Lucene_Field::keyword('srl', $obj->comment_srl));
         $doc->addField(Zend_Search_Lucene_Field::keyword('update_order', $obj->update_order));
         $doc->addField(Zend_Search_Lucene_Field::text('content', $obj->content));
         $index->addDocument($doc);
-        //$index->optimize();
+        if ($withOptimize) $index->optimize();
         return $index;
     }
 
@@ -217,7 +217,8 @@ class zend_searchController extends zend_search {
                     $args = new stdClass();
                     $args->document_srls = $bunchOfSerials;
                     $out = executeQuery('zend_search.getDocumentsBySrls', $args);
-                    foreach ($out->data as $o) $this->addDocumentToIndex($o);
+                    foreach ($out->data as $o) $index = $this->addDocumentToIndex($o, false);
+                    $index->optimize();
                     $bunchOfSerials = array();
                 }
             }
@@ -233,7 +234,8 @@ class zend_searchController extends zend_search {
                     $args = new stdClass();
                     $args->comment_srls = $bunchOfSerials;
                     $out = executeQuery('zend_search.getCommentsBySrls', $args);
-                    foreach ($out->data as $o) $this->addCommentToIndex($o);
+                    foreach ($out->data as $o) $index = $this->addCommentToIndex($o, false);
+                    $index->optimize();
                     $bunchOfSerials = array();
                 }
             }
