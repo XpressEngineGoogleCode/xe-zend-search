@@ -105,6 +105,10 @@ class zend_searchController extends zend_search {
         if ($index == self::INDEX_PATH_COMMENTS) return $this->commentsIndex = $myIndex;
     }
 
+    /**
+     * @param $obj document object
+     * @return Zend_Search_Lucene_Proxy
+     */
     function addDocumentToIndex($obj) {
         $index = $this->createOrRetrieveIndex(self::INDEX_PATH_DOCUMENTS);
         $doc = new Zend_Search_Lucene_Document();
@@ -114,9 +118,14 @@ class zend_searchController extends zend_search {
         $doc->addField(Zend_Search_Lucene_Field::unStored('title', $obj->title));
         $doc->addField(Zend_Search_Lucene_Field::unStored('tags', implode(', ', $this->getDocumentTags($obj))));
         $index->addDocument($doc);
-        $index->optimize();
+        //$index->optimize();
+        return $index;
     }
 
+    /**
+     * @param $obj comment object
+     * @return Zend_Search_Lucene_Proxy
+     */
     function addCommentToIndex($obj) {
         $index = $this->createOrRetrieveIndex(self::INDEX_PATH_COMMENTS);
         $doc = new Zend_Search_Lucene_Document();
@@ -124,7 +133,8 @@ class zend_searchController extends zend_search {
         $doc->addField(Zend_Search_Lucene_Field::keyword('update_order', $obj->update_order));
         $doc->addField(Zend_Search_Lucene_Field::text('content', $obj->content));
         $index->addDocument($doc);
-        $index->optimize();
+        //$index->optimize();
+        return $index;
     }
 
     function deleteDocumentFromIndex($obj) {
