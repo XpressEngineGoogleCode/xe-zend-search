@@ -14,42 +14,6 @@
                 <input type="hidden" name="target_module_srl" id="target_module_srl" value="{$config->target_module_srl}" />
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="xe-ui-form-table">
                     <tr>
-                        <td class="v-top"><p>{$lang->sample_code}</p></td>
-                        <td>
-                            <textarea readonly="readonly" rows="5" cols="80" class="xe-ui-panel-textarea">{$sample_code}</textarea>
-                            <p class="desc">{$lang->about_sample_code}</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="v-top"><p>{$lang->skin}</p></td>
-                        <td><p>
-                            <select name="skin" class="xe-ui-panel-select">
-                                <!--@foreach($skin_list as $key=>$val)-->
-                                <option value="{$key}" <!--@if($config->skin==$key)-->selected="selected"<!--@end-->>{$val->title}</option>
-                                <!--@end-->
-                            </select></p>
-                            <p class="desc">{$lang->about_skin}</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="v-top"><p>{$lang->target}</p></td>
-                        <td><p>
-                            <select name="target" class="xe-ui-panel-select">
-                                <option value="include">{$lang->include_search_target}</option>
-                                <option value="exclude" <!--@if($config->target=='exclude')-->selected="selected"<!--@end-->>{$lang->exclude_search_target}</option>
-                            </select></p>
-
-                            <select name="_target_module_srl" id="_target_module_srl" size="8" style="display:block;margin:10px 0;"></select>
-
-                            <a class="xe-ui-button-gray" href="{getUrl('','module','module','act','dispModuleSelectList','id','target_module_srl')}" onclick="popopen(this.href, 'ModuleSelect');return false;" class="button blue"><span>{$lang->cmd_insert}</span></a>
-                            <a class="xe-ui-button-gray" href="#" onclick="midRemove('target_module_srl');return false;" class="button red"><span>{$lang->cmd_delete}</span></a>
-
-                            <script type="text/javascript">
-                                jQuery( function() { getModuleSrlList('target_module_srl'); } );
-                            </script>
-                        </td>
-                    </tr>
-                    <tr>
                         <td class="v-top">
                             <p>{$lang->search_lucene}</p>
                         </td>

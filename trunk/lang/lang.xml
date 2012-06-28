@@ -12,6 +12,9 @@
 		<value xml:lang="tr"><![CDATA[Birleşik Arama]]></value>
 		<value xml:lang="vi"><![CDATA[Tìm kiếm tổng hợp]]></value>
 	</item>
+	<item name="search_manager">
+		<value xml:lang="en"><![CDATA[Zend Search]]></value>
+	</item>
 	<item name="sample_code">
 		<value xml:lang="ko"><![CDATA[샘플코드]]></value>
 		<value xml:lang="en"><![CDATA[Sample Code]]></value>
