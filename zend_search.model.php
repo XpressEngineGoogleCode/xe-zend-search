@@ -199,7 +199,7 @@
             return $query->highlightMatches($where);*/
             /*$doc = Zend_Search_Lucene_Document_Html::loadHTML($where);
             return $doc->highlight($what);*/
-            return preg_replace('/' . preg_quote($what, '/') . '/i', "<span style='background-color: #fafad2'>$what</span>", $where);
+            return preg_replace('/' . preg_quote($what, '/') . '/i', "<span style='background-color: #fff367;' class='xe-search-highlight'>$what</span>", $where);
         }
 
         /**

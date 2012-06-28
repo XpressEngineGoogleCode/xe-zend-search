@@ -13,6 +13,13 @@
                 <input type="hidden" name="module" value="admin" />
                 <input type="hidden" name="target_module_srl" id="target_module_srl" value="{$config->target_module_srl}" />
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="xe-ui-form-table">
+                    <!--@if (isset($reindexed) && $reindexed)-->
+                    <tr>
+                        <td colspan="2">
+                            <p>Reindexation successful.</p>
+                        </td>
+                    </tr>
+                    <!--@endif-->
                     <tr>
                         <td class="v-top">
                             <p>{$lang->search_lucene}</p>

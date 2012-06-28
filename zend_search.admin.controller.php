@@ -33,20 +33,26 @@
             $oModuleController = getController('module');
             $output = $oModuleController->insertModuleConfig('zend_search',$args);
 
+            $reIndexed = false;
             if (!$config->lucene_search && $args->lucene_search == 'Y') {
                 $controller = getController('zend_search');
+                //reindex and tell it to the template
                 $controller->reIndex();
+                $reIndexed = true;
+                //set proper action forward
                 $this->deleteActionForward('integration_search', 'view', 'IS');
                 $oModuleController->insertActionForward('zend_search', 'view', 'IS');
             }
             else {
+                //restore action forward to integration_search
                 $this->deleteActionForward('zend_search', 'view', 'IS');
                 $oModuleController->insertActionForward('integration_search', 'view', 'IS');
             }
 
 			if(!in_array(Context::getRequestMethod(),array('XMLRPC','JSON'))) {
 				$returnUrl = Context::get('success_return_url') ? Context::get('success_return_url') : getNotEncodedUrl('', 'module', 'admin', 'act', 'dispZend_searchAdminContent');
-				header('location:'.$returnUrl);
+				if ($reIndexed) $returnUrl .= '&reindexed=yes';
+                header('location:'.$returnUrl);
 				return;
 			}
 			else return $output;
