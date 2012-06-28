@@ -116,7 +116,7 @@
 		<value xml:lang="tr"><![CDATA[Seçili modülleri arama dışında tut]]></value>
 	</item>
 	<item name="search_lucene">
-		<value xml:lang="en"><![CDATA[Lucene]]></value>
+		<value xml:lang="en"><![CDATA[Use Lucene]]></value>
 	</item>
 	<item name="about_search_lucene">
 		<value xml:lang="en"><![CDATA[Lucene supports ranked searching (best results returned first). When you enable this, all documents and comments are (re)indexed, so it can take a few minutes.]]></value>
